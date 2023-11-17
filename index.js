@@ -3,6 +3,9 @@ const { faker } = require('@faker-js/faker');
 const axios = require('axios');
 require('dotenv').config()
 
+
+console.log("test2 branch2222");
+
 const publish_topic = async (data) =>
 {
     //console.log('data:', data);
