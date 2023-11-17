@@ -310,132 +310,350 @@ const storageTank1 = () =>
 }
 
 
+//UnWinder
+const unWinder = () => 
+{
+    return {
+
+        tension: faker.number.float({ min: 40.0, max: 250.0 })
+    ,   tension_unit: "N" 
+    ,   kwonchikyung: faker.number.int({ min: 100.0, max: 500.0 })
+    ,   kwonchikyung_unit: "mm"
+    ,   speed: faker.number.int({ min: 1.0, max: 25.0 })
+    ,   speed_unit: "m/min"
+    };
+}
+
+
+//CoaterHead
+//생산speed production_speed
+const coaterHead = () => 
+{
+    return {
+        production_speed: faker.number.float({ min: 1.0, max: 25.0 })
+    ,   production_speed_unit: "m/min" 
+    ,   roll_speed: faker.number.float({ min: 1.0, max: 1000.0 })
+    ,   roll_speed_unit: "rpm" 
+    ,   nozzle_pressure: faker.number.float({ min: 0.1, max: 10.0 })
+    ,   nozzle_pressure_unit: "kgf" 
+    ,   liquid_pressure: faker.number.float({ min: 0.1, max: 10.0 })
+    ,   liquid_pressure_unit: "kgf" 
+    ,   gap_display: faker.number.float({ min: 1.0, max: 100.0 })
+    ,   gap_display_unit: "um" 
+    ,   mono_pump: faker.number.float({ min: 1.0, max: 1000.0 })
+    ,   mono_unit: "rpm" 
+    };
+}
+
+
+//Dryer
+const dryer = () => 
+{
+    return {
+        temp: faker.number.float({ min: 50.0, max: 200.0 })
+    ,   temp_unit: "℃ " 
+    ,   nmp_concentration: faker.number.float({ min: 50.0, max: 200.0 })
+    ,   nmp_concentration_unit: "%" 
+    };
+}
+
+
+//Coating out Feed
+const coatingOutFeed = () => 
+{
+    return {
+        areal_coverage: faker.number.float({ min: 1.0, max: 200.0 })
+    ,   areal_coverage_unit: "mg/Cm2" 
+    };
+}
+
+
+
+
+//Out Feed
+const pressOutFeed = () => 
+{
+    return {
+
+        tension: faker.number.float({ min: 40.0, max: 250.0 })
+    ,   tension_unit: "N" 
+    ,   coolant_temp: faker.number.float({ min: 10.0, max: 30.0 })
+    ,   coolant_temp_unit: "℃ " 
+    };
+}
+
+
+
+//ReWinder
+const reWinder = () => 
+{
+    return {
+
+        tension: faker.number.float({ min: 40.0, max: 250.0 })
+    ,   tension_unit: "N" 
+    ,   kwonchikyung: faker.number.int({ min: 100.0, max: 500.0 })
+    ,   kwonchikyung_unit: "mm"
+    };
+}
+
+
+//sliting ReWinder
+const slitingRewinder = () => 
+{
+    return {
+
+        upper_tension: faker.number.float({ min: 40.0, max: 250.0 })
+    ,   upper_tension_unit: "N" 
+    ,   lower_tension: faker.number.float({ min: 40.0, max: 250.0 })
+    ,   lower_tension_unit: "N" 
+    ,   upper_kwonchikyung: faker.number.int({ min: 100.0, max: 500.0 })
+    ,   upper_kwonchikyung_unit: "mm"
+    ,   lower_kwonchikyung: faker.number.int({ min: 100.0, max: 500.0 })
+    ,   lower_kwonchikyung_unit: "mm"
+    };
+}
+
+
+
+
+
+//Press
+const press = () => 
+{
+    return {
+
+        roll_temp: faker.number.float({ min: 0.0, max: 150.0 })
+    ,   roll_temp_unit: "℃ " 
+    ,   static_pressure: faker.number.int({ min: 0.0, max: 6200.0 })
+    ,   static_pressure_unit: "kgf/CM"
+    ,   back_pressure: faker.number.int({ min: 0.0, max: 6200.0 })
+    ,   back_pressure_unit: "kgf/CM"
+    ,   nip_pressure: faker.number.int({ min: 0.0, max: 6200.0 })
+    ,   nip_pressure_unit: "kgf/CM"
+    ,   production_speed: faker.number.float({ min: 0, max: 50.0 })
+    ,   production_speed_unit: "m/min" 
+    ,   gap_display: faker.number.float({ min: 1.0, max: 100.0 })
+    ,   gap_display_unit: "um" 
+    };
+}
 
 
 
 
 
 
+
+
+
+
+const send_data = async() => 
+{
+    await send_data_mixing(1);
+    await send_data_mixing(2);
+
+    await send_data_coating(1);
+    await send_data_coating(2);
+
+    await send_data_pressing(1);
+    await send_data_pressing(2);
+
+    await send_data_sliting(1);
+    await send_data_sliting(2);
+}
 
 
 
 //음극공정은 process_type 1
 //양극공정은 process_type 2
-const send_data = async (process_type,process_name) => 
+const send_data_mixing = async (process_type) => 
 {
-    let powderInput1_data   = powderInput1();
-    let powderInput1_topic  = `sfs/machine/${process_type}/${process_name}/pi1`
+    const process_name              = "mixing";
 
-    let powderInput2_data   = powderInput2();
-    let powderInput2_topic  = `sfs/machine/${process_type}/${process_name}/pi2`
+    let powderInput1_data           = powderInput1();
+    let powderInput1_topic          = `sfs/machine/${process_type}/${process_name}/pi1`
 
-    let powderInput3_data   = powderInput3();
-    let powderInput3_topic  = `sfs/machine/${process_type}/${process_name}/pi3`
+    let powderInput2_data           = powderInput2();
+    let powderInput2_topic          = `sfs/machine/${process_type}/${process_name}/pi2`
+
+    let powderInput3_data           = powderInput3();
+    let powderInput3_topic          = `sfs/machine/${process_type}/${process_name}/pi3`
 
     await publish_result(powderInput1_topic,powderInput1_data);
     await publish_result(powderInput2_topic,powderInput2_data);
     await publish_result(powderInput3_topic,powderInput3_data);
 
 
+    let storageHopper1_data         = storageHopper1();
+    let storageHopper1_topic        = `sfs/machine/${process_type}/${process_name}/sh1`
 
+    let storageHopper2_data         = storageHopper2();
+    let storageHopper2_topic        = `sfs/machine/${process_type}/${process_name}/sh2`
 
-
-    let storageHopper1_data = storageHopper1();
-    let storageHopper1_topic = `sfs/machine/${process_type}/${process_name}/sh1`
-
-    let storageHopper2_data = storageHopper2();
-    let storageHopper2_topic = `sfs/machine/${process_type}/${process_name}/sh2`
-
-    let storageHopper3_data = storageHopper3();
-    let storageHopper3_topic = `sfs/machine/${process_type}/${process_name}/sh3`
-
+    let storageHopper3_data         = storageHopper3();
+    let storageHopper3_topic        = `sfs/machine/${process_type}/${process_name}/sh3`
 
     await publish_result(storageHopper1_topic,storageHopper1_data);
     await publish_result(storageHopper2_topic,storageHopper2_data);
     await publish_result(storageHopper3_topic,storageHopper3_data);
 
 
-    let disCharge1_data = disCharge1();
-    let disCharge1_topic = `sfs/machine/${process_type}/${process_name}/dc1`
-
+    let disCharge1_data             = disCharge1();
+    let disCharge1_topic            = `sfs/machine/${process_type}/${process_name}/dc1`
     await publish_result(disCharge1_topic,disCharge1_data);
 
-    let nmpTank1_data = nmpTank1();
-    let nmpTank1_topic = `sfs/machine/${process_type}/${process_name}/nt1`
+
+    let nmpTank1_data               = nmpTank1();
+    let nmpTank1_topic              = `sfs/machine/${process_type}/${process_name}/nt1`
 
     await publish_result(nmpTank1_topic,nmpTank1_data);
 
 
-    let binerMixer1_data = binerMixer1()
-    let binerMixer1_topic = `sfs/machine/${process_type}/${process_name}/bm1`
+    let binerMixer1_data            = binerMixer1()
+    let binerMixer1_topic           = `sfs/machine/${process_type}/${process_name}/bm1`
 
     await publish_result(binerMixer1_topic,binerMixer1_data);
 
-    let binerTank1_data = binerTank1()
-    let binerTank1_topic = `sfs/machine/${process_type}/${process_name}/bt1`
+    let binerTank1_data             = binerTank1()
+    let binerTank1_topic            = `sfs/machine/${process_type}/${process_name}/bt1`
 
     await publish_result(binerTank1_topic,binerTank1_data);
 
-    let standardEquipment1_data = standardEquipment1()
-    let standardEquipment1_topic = `sfs/machine/${process_type}/${process_name}/se1`
+    let standardEquipment1_data     = standardEquipment1()
+    let standardEquipment1_topic    = `sfs/machine/${process_type}/${process_name}/se1`
 
     await publish_result(standardEquipment1_topic,standardEquipment1_data);
 
-    let cmcMixer1_data = cmcMixer1()
-    let cmcMixer1_topic = `sfs/machine/${process_type}/${process_name}/cm1`
+    let cmcMixer1_data              = cmcMixer1()
+    let cmcMixer1_topic             = `sfs/machine/${process_type}/${process_name}/cm1`
 
     await publish_result(cmcMixer1_topic,cmcMixer1_data);
 
 
-    let cmcTank1_data = cmcTank1()
-    let cmcTank1_topic = `sfs/machine/${process_type}/${process_name}/ct1`
+    let cmcTank1_data               = cmcTank1()
+    let cmcTank1_topic              = `sfs/machine/${process_type}/${process_name}/ct1`
 
     await publish_result(cmcTank1_topic,cmcTank1_data);
 
-
-    let pdMixer1_data = pdMixer1();
-    let pdMixer1_topic =  `sfs/machine/${process_type}/${process_name}/pd1`
+    let pdMixer1_data               = pdMixer1();
+    let pdMixer1_topic              = `sfs/machine/${process_type}/${process_name}/pd1`
 
     await publish_result(pdMixer1_topic,pdMixer1_data);
 
-    let pdMixer2_data = pdMixer1(); //같이 사용
-    let pdMixer2_topic =  `sfs/machine/${process_type}/${process_name}/pd2`
+    let pdMixer2_data               = pdMixer1(); //같이 사용
+    let pdMixer2_topic              = `sfs/machine/${process_type}/${process_name}/pd2`
 
     await publish_result(pdMixer2_topic,pdMixer2_data);
 
-    let storageTank1_data = storageTank1();
-    let storageTank1_topic =  `sfs/machine/${process_type}/${process_name}/st1`
+    let storageTank1_data           = storageTank1();
+    let storageTank1_topic          = `sfs/machine/${process_type}/${process_name}/st1`
 
     await publish_result(storageTank1_topic,storageTank1_data);
 
-    let storageTank2_data = storageTank1();
-    let storageTank2_topic =  `sfs/machine/${process_type}/${process_name}/st2`
+    let storageTank2_data           = storageTank1();
+    let storageTank2_topic          = `sfs/machine/${process_type}/${process_name}/st2`
 
     await publish_result(storageTank2_topic,storageTank2_data);
 
 
+}
+
+const send_data_coating = async (process_type) => 
+{
+    const process_name = 'coating';
+
+    let unwinder_data               = unWinder();
+    let unwinder_topic              = `sfs/machine/${process_type}/${process_name}/uw1`
+
+    await publish_result(unwinder_topic,unwinder_data);
+
+    let coaterHead_data             = coaterHead();
+    let coaterHead_topic            = `sfs/machine/${process_type}/${process_name}/ch1`
+
+    await publish_result(coaterHead_topic,coaterHead_data);
+
+    let dryer_data                  = dryer();
+    let dryer_topic                 = `sfs/machine/${process_type}/${process_name}/dr1`
+
+    await publish_result(dryer_topic,dryer_data);
+
+    let outfeed_data                = coatingOutFeed();
+    let outfeed_topic               = `sfs/machine/${process_type}/${process_name}/of1`
+
+    await publish_result(outfeed_topic,outfeed_data);
 
 
+    let rewinder_data                = reWinder();
+    let rewinder_topic               = `sfs/machine/${process_type}/${process_name}/rw1`
+    await publish_result(rewinder_topic,rewinder_data);
+}
 
 
+const send_data_pressing = async (process_type) => 
+{
+    const process_name = 'pressing';
+
+    let unwinder_data               = unWinder();
+    let unwinder_topic              = `sfs/machine/${process_type}/${process_name}/uw1`
+
+    await publish_result(unwinder_topic,unwinder_data);
 
 
+    let press_data                  = press();
+    let press_topic                 = `sfs/machine/${process_type}/${process_name}/pd1`
+
+    await publish_result(press_topic,press_data);
+
+    let outfeed_data                = pressOutFeed();
+    let outfeed_topic               = `sfs/machine/${process_type}/${process_name}/of1`
+
+    await publish_result(outfeed_topic,outfeed_data);
 
 
+    let rewinder_data                = reWinder();
+    let rewinder_topic               = `sfs/machine/${process_type}/${process_name}/rw1`
+    await publish_result(rewinder_topic,rewinder_data);
+}
 
 
+const knife = () => 
+{
+    return {
+
+        lower_speed_ratio: faker.number.float({ min: 0.0, max: 100.0 })
+    ,   lower_speed_ratio_unit: "%" 
+    ,   upper_speed_ratio: faker.number.float({ min: 0.0, max: 100.0 })
+    ,   upper_speed_ratio_unit: "%" 
+    ,   lower_diameter: faker.number.float({ min: 60.0, max: 70.0 })
+    ,   lower_diameter_unit: "mm" 
+    ,   upper_diameter: faker.number.float({ min: 125.0, max: 130.0 })
+    ,   upper_diameter_unit: "mm" 
+    ,   production_speed: faker.number.float({ min: 0, max: 50.0 })
+    ,   production_speed_unit: "m/min" 
+    ,   dust_collector_pressure: faker.number.float({ min: 0.0, max: 10.0 })
+    ,   dust_collector_pressure_unit: "kgf" 
+    };
+    
+}
+
+const send_data_sliting = async (process_type) => 
+{
+    const process_name = 'sliting';
+
+    let unwinder_data               = unWinder();
+    let unwinder_topic              = `sfs/machine/${process_type}/${process_name}/uw1`
+
+    await publish_result(unwinder_topic,unwinder_data);
 
 
+    let knife_data                  = knife();
+    let knife_topic                 = `sfs/machine/${process_type}/${process_name}/kn1`
+
+    await publish_result(knife_topic,knife_data);
 
 
-
-
-
-
-
-
-
-
+    let rewinder_data                = slitingRewinder();
+    let rewinder_topic               = `sfs/machine/${process_type}/${process_name}/rw1`
+    await publish_result(rewinder_topic,rewinder_data);
 }
 
 
@@ -447,8 +665,5 @@ const send_data = async (process_type,process_name) =>
 
 main(async () => 
 {
-
-    await send_data(1,"mixing");
-    await send_data(2,"mixing");
-    // Do stuff
+    await send_data();
 })
