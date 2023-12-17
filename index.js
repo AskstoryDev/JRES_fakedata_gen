@@ -11,7 +11,7 @@ const publish_topic = async (data) => {
         let params = {
             method: "POST",
             auth: { username: process.env.MQTT_API_USERNAME, password: process.env.MQTT_API_PASSWORD },
-            url: "http://elastic.askstory.com:18083/api/v5/publish",
+            url: "http://i1.askstoryboard.com:18083/api/v5/publish",
             headers: { "Content-Type": "application/json" },
             data: string_data
         };
@@ -35,7 +35,11 @@ const publish_topic = async (data) => {
 //
 
 const publish_result = async (topic, payload) => {
-    console.log("topic =>", topic);
+
+    topic = topic.trim();
+    console.log(topic);
+
+    //console.log("machine_data['",topic,']=',payload);
     payload = JSON.stringify(payload);
     let data = {
         payload_encoding: "plain",
@@ -73,7 +77,7 @@ const powderInput3 = () => {
 //Storage Hopper 1
 const storageHopper1 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 1 }),
+        load_cell: faker.number.int({ min: 0, max: 5000 }),
         load_cell_unit: "kg",
         press: faker.number.int({ min: 0, max: 10000 }),
         press_unit: "kgf",
@@ -87,7 +91,7 @@ const storageHopper1 = () => {
 //Storage Hopper 2
 const storageHopper2 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 1 }),
+        load_cell: faker.number.int({ min: 0, max: 5000 }),
         load_cell_unit: "kg",
         press: faker.number.int({ min: 0, max: 10000 }),
         press_unit: "kgf",
@@ -101,7 +105,7 @@ const storageHopper2 = () => {
 //Storage Hopper 3
 const storageHopper3 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 1 }),
+        load_cell: faker.number.int({ min: 0, max: 5000 }),
         load_cell_unit: "kg",
         press: faker.number.int({ min: 0, max: 10000 }),
         press_unit: "kgf",
@@ -115,7 +119,7 @@ const storageHopper3 = () => {
 //Discharge1
 const disCharge1 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 1 }),
+        load_cell: faker.number.int({ min: 0, max: 5000 }),
         load_cell_unit: "kg",
         press: faker.number.int({ min: 0, max: 10000 }),
         press_unit: "bar",
@@ -133,7 +137,7 @@ const disCharge1 = () => {
 const nmpTank1 = () => {
     return {
         level: faker.number.int({ min: 0, max: 10000 }),
-        load_cell_unit: "kg",
+        level_unit: "kg",
         press: faker.number.int({ min: 0, max: 10000 }),
         press_unit: "bar",
         nmp_pump_output: faker.number.int({ min: 0, max: 5000 }),
@@ -156,7 +160,11 @@ const binerMixer1 = () => {
         blade_rpm: faker.number.int({ min: 0, max: 100 }),
         blade_rpm_unit: "rpm",
         blade_current: faker.number.int({ min: 0, max: 500 }),
-        blade_current_unit: "A"
+        blade_current_unit: "A",
+        despa_rpm: faker.number.int({ min: 0, max: 5000 }),
+        despa_rpm_unit: "rpm",
+        despa_current: faker.number.int({ min: 0, max: 500 }),
+        despa_current_unit: "A"
     };
 };
 
@@ -372,7 +380,7 @@ const getRandomAirQualityValue = () =>
         PM10_unit: "㎍/㎥",
         PM2_5: faker.number.int({ min: 0, max:1000  }),
         PM2_5_unit: "㎍/㎥",
-        CO2: faker.number.int({ min: 0, max:401000  }),
+        CO2: faker.number.int({ min: 0, max:5000  }),
         CO2_unit: "ppm"
     };
 
@@ -413,9 +421,9 @@ const send_air_data = async () => {
 
 
     //minus 파우더룸 창고 3F 
-    await publish_result('sfs/air/1/powderroom_3f', getRandomAirQualityValue());
+    //await publish_result('sfs/air/1/powderroom_3f', getRandomAirQualityValue());
     //plus 파우더룸  창고 3F
-    await publish_result('sfs/air/2/powderroom_3f', getRandomAirQualityValue());
+    //await publish_result('sfs/air/2/powderroom_3f', getRandomAirQualityValue());
 
 
 }
@@ -433,12 +441,12 @@ const sleep = (ms) => {
 main(async () => 
 {
     //1초에 한번씩 데이터를 생성한다.
-    for (let i = 0; i < 58; i++) 
+    for (let i = 0; i < 5800; i++) 
     {
         console.log(i + 1, "second");
         await send_data(1, "mixing");
         await send_data(2, "mixing");
         await send_air_data();
-        await sleep(800);
+        await sleep(10);
     }
 });
