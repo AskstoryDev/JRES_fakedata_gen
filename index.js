@@ -77,9 +77,9 @@ const powderInput3 = () => {
 //Storage Hopper 1
 const storageHopper1 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 5000 }),
+        load_cell: faker.number.int({ min: 3000, max: 3200 }),
         load_cell_unit: "kg",
-        press: faker.number.int({ min: 0, max: 10000 }),
+        press: faker.number.int({ min: 5000, max: 5300 }),
         press_unit: "kgf",
         dust_collector: faker.number.int({ min: 0, max: 1 }),
         dust_collector_unit: "",
@@ -91,9 +91,9 @@ const storageHopper1 = () => {
 //Storage Hopper 2
 const storageHopper2 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 5000 }),
+        load_cell: faker.number.int({ min: 3000, max: 3200 }),
         load_cell_unit: "kg",
-        press: faker.number.int({ min: 0, max: 10000 }),
+        press: faker.number.int({ min: 5000, max: 5300 }),
         press_unit: "kgf",
         dust_collector: faker.number.int({ min: 0, max: 1 }),
         dust_collector_unit: "",
@@ -105,9 +105,9 @@ const storageHopper2 = () => {
 //Storage Hopper 3
 const storageHopper3 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 5000 }),
+        load_cell: faker.number.int({ min: 3000, max: 3200 }),
         load_cell_unit: "kg",
-        press: faker.number.int({ min: 0, max: 10000 }),
+        press: faker.number.int({ min: 5000, max: 5300 }),
         press_unit: "kgf",
         dust_collector: faker.number.int({ min: 0, max: 1 }),
         dust_collector_unit: "",
@@ -119,9 +119,9 @@ const storageHopper3 = () => {
 //Discharge1
 const disCharge1 = () => {
     return {
-        load_cell: faker.number.int({ min: 0, max: 5000 }),
+        load_cell: faker.number.int({ min: 3000, max: 3200 }),
         load_cell_unit: "kg",
-        press: faker.number.int({ min: 0, max: 10000 }),
+        press: faker.number.int({ min: 5000, max: 5300 }),
         press_unit: "bar",
         dust_collector: faker.number.int({ min: 0, max: 1 }),
         dust_collector_unit: "",
@@ -136,11 +136,11 @@ const disCharge1 = () => {
 */
 const nmpTank1 = () => {
     return {
-        level: faker.number.int({ min: 0, max: 10000 }),
+        level: faker.number.int({ min: 3000, max: 3010 }),
         level_unit: "kg",
-        press: faker.number.int({ min: 0, max: 10000 }),
+        press: faker.number.int({ min: 2000, max: 2100 }),
         press_unit: "bar",
-        nmp_pump_output: faker.number.int({ min: 0, max: 5000 }),
+        nmp_pump_output: faker.number.int({ min: 3000, max: 3010 }),
         nmp_pump_output_unit: "kg",
         supply_pump: faker.number.int({ min: 0, max: 1 }),
         supply_pump_unit: "",
@@ -155,15 +155,15 @@ const nmpTank1 = () => {
 */
 const binerMixer1 = () => {
     return {
-        nmp_pump_input: faker.number.int({ min: 0, max: 5000 }),
+        nmp_pump_input: faker.number.int({ min: 2000, max: 2020 }),
         nmp_pump_input_unit: "kg",
-        blade_rpm: faker.number.int({ min: 0, max: 100 }),
+        blade_rpm: faker.number.int({ min: 50, max: 70 }),
         blade_rpm_unit: "rpm",
-        blade_current: faker.number.int({ min: 0, max: 500 }),
+        blade_current: faker.number.int({ min: 150, max: 170 }),
         blade_current_unit: "A",
-        despa_rpm: faker.number.int({ min: 0, max: 5000 }),
+        despa_rpm: faker.number.int({ min: 2000, max: 2200 }),
         despa_rpm_unit: "rpm",
-        despa_current: faker.number.int({ min: 0, max: 500 }),
+        despa_current: faker.number.int({ min: 200, max: 210 }),
         despa_current_unit: "A"
     };
 };
@@ -171,9 +171,9 @@ const binerMixer1 = () => {
 //Biner Tank
 const binerTank1 = () => {
     return {
-        blade_rpm: faker.number.int({ min: 0, max: 100 }),
+        blade_rpm: faker.number.int({ min: 50, max: 70 }),
         blade_rpm_unit: "rpm",
-        tank_level: faker.number.int({ min: 0, max: 5000 }),
+        tank_level: faker.number.int({ min: 1200, max: 1220 }),
         tank_level_unit: "kg"
     };
 };
@@ -182,15 +182,15 @@ const binerTank1 = () => {
 // 원수 투입량 : raw_water_input
 const standardEquipment1 = () => {
     return {
-        raw_water_input: faker.number.int({ min: 0, max: 5000 }),
+        raw_water_input: faker.number.int({ min: 3300, max: 3310 }),
         raw_water_input_unit: "kg",
-        ro_throughput: faker.number.int({ min: 0, max: 5000 }),
+        ro_throughput: faker.number.int({ min: 1100, max: 1120 }),
         ro_throughput_unit: "kg",
-        edi_throughput: faker.number.int({ min: 0, max: 5000 }),
+        edi_throughput: faker.number.int({ min: 2000, max: 2020 }),
         edi_throughput_unit: "kg",
-        pureion_conductivity: faker.number.int({ min: 0, max: 5000 }),
+        pureion_conductivity: faker.number.int({ min: 2000, max: 2030 }),
         pureion_conductivity_unit: "㎲/cm",
-        tank_level: faker.number.int({ min: 0, max: 5000 }),
+        tank_level: faker.number.int({ min: 1200, max: 1220 }),
         tank_level_unit: "kg",
         supply_pump: faker.number.int({ min: 0, max: 1 }),
         supply_pump_unit: ""
@@ -200,17 +200,17 @@ const standardEquipment1 = () => {
 //CMC Mixer
 const cmcMixer1 = () => {
     return {
-        nmp_pump_input: faker.number.int({ min: 0, max: 5000 }),
+        nmp_pump_input: faker.number.int({ min: 2000, max: 2020 }),
         nmp_pump_input_unit: "kg",
-        pure_input: faker.number.int({ min: 0, max: 5000 }),
+        pure_input: faker.number.int({ min: 50, max: 60 }),
         pure_input_unit: "kg",
-        blade_rpm: faker.number.int({ min: 0, max: 100 }),
+        blade_rpm: faker.number.int({ min: 60, max: 69 }),
         blade_rpm_unit: "rpm",
-        blade_current: faker.number.int({ min: 0, max: 500 }),
+        blade_current: faker.number.int({ min: 100, max: 110 }),
         blade_current_unit: "A",
-        despa_rpm: faker.number.int({ min: 0, max: 100 }),
+        despa_rpm: faker.number.int({ min: 80, max: 85 }),
         despa_rpm_unit: "rpm",
-        despa_current: faker.number.int({ min: 0, max: 500 }),
+        despa_current: faker.number.int({ min: 200, max: 203 }),
         despa_current_unit: "A",
         supply_pump_unit: ""
     };
@@ -219,9 +219,9 @@ const cmcMixer1 = () => {
 //CMC tank
 const cmcTank1 = () => {
     return {
-        blade_rpm: faker.number.int({ min: 0, max: 100 }),
+        blade_rpm: faker.number.int({ min: 20, max: 25 }),
         blade_rpm_unit: "rpm",
-        tank_level: faker.number.int({ min: 0, max: 5000 }),
+        tank_level: faker.number.int({ min: 2200, max: 2208 }),
         tank_level_unit: "kg"
     };
 };
@@ -234,27 +234,27 @@ const cmcTank1 = () => {
 */
 const pdMixer1 = () => {
     return {
-        active_material_input: faker.number.int({ min: 0, max: 10000 }),
+        active_material_input: faker.number.int({ min: 3000, max: 3020 }),
         active_material_unit: "kg",
-        binder_input: faker.number.int({ min: 0, max: 5000 }),
+        binder_input: faker.number.int({ min: 1100, max: 1108 }),
         binder_input_unit: "kg",
-        cmc_input: faker.number.int({ min: 0, max: 5000 }),
+        cmc_input: faker.number.int({ min: 3030, max: 3037 }),
         cmc_input_unit: "kg",
-        conductive_agent_input: faker.number.int({ min: 0, max: 5000 }),
+        conductive_agent_input: faker.number.int({ min: 2020, max: 2023 }),
         conductive_agent_input_unit: "kg",
-        nmp_pump_input: faker.number.int({ min: 0, max: 5000 }),
+        nmp_pump_input: faker.number.int({ min: 700, max: 707 }),
         nmp_pump_input_unit: "kg",
-        pure_input: faker.number.int({ min: 0, max: 5000 }),
+        pure_input: faker.number.int({ min: 900, max: 909 }),
         pure_input_unit: "kg",
-        press: faker.number.int({ min: 0, max: 20 }),
+        press: faker.number.int({ min: 10, max: 16 }),
         press_unit: "kgf",
-        planetry_rpm: faker.number.int({ min: 0, max: 100 }),
+        planetry_rpm: faker.number.int({ min: 77, max: 79 }),
         planetry_unit: "rpm",
-        planetry_current: faker.number.int({ min: 0, max: 500 }),
+        planetry_current: faker.number.int({ min: 310, max: 313 }),
         planetry_current: "rpm",
-        despa_rpm: faker.number.int({ min: 0, max: 100 }),
+        despa_rpm: faker.number.int({ min: 87, max: 89 }),
         despa_rpm_unit: "rpm",
-        despa_current: faker.number.int({ min: 0, max: 500 }),
+        despa_current: faker.number.int({ min: 120, max: 127 }),
         despa_current_unit: "A"
     };
 };
@@ -372,15 +372,15 @@ CO2
 const getRandomAirQualityValue = () => 
 {
     return {
-        Temperature: faker.number.int({ min: -10, max:50  }),
+        Temperature: faker.number.int({ min: 23, max:25  }),
         Temperature_unit: "°C",
-        Humidity: faker.number.int({ min: 0, max:100  }),
+        Humidity: faker.number.int({ min: 30, max:33  }),
         Humidity_unit: "%",
-        PM10: faker.number.int({ min: 0, max:1000  }),
+        PM10: faker.number.int({ min: 10, max:12  }),
         PM10_unit: "㎍/㎥",
-        PM2_5: faker.number.int({ min: 0, max:1000  }),
+        PM2_5: faker.number.int({ min: 5, max:8  }),
         PM2_5_unit: "㎍/㎥",
-        CO2: faker.number.int({ min: 0, max:5000  }),
+        CO2: faker.number.int({ min: 950, max:1100  }),
         CO2_unit: "ppm"
     };
 
@@ -441,12 +441,12 @@ const sleep = (ms) => {
 main(async () => 
 {
     //1초에 한번씩 데이터를 생성한다.
-    for (let i = 0; i < 5800; i++) 
+    for (let i = 0; i < 60; i++) 
     {
         console.log(i + 1, "second");
         await send_data(1, "mixing");
         await send_data(2, "mixing");
         await send_air_data();
-        await sleep(10);
+        await sleep(500);
     }
 });
